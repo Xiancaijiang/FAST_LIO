@@ -1,29 +1,29 @@
-## Related Works and Extended Application
+## 相关工作和扩展应用
 
-**SLAM:**
+**SLAM相关项目:**
 
-1. [ikd-Tree](https://github.com/hku-mars/ikd-Tree): A state-of-art dynamic KD-Tree for 3D kNN search.
-2. [R2LIVE](https://github.com/hku-mars/r2live): A high-precision LiDAR-inertial-Vision fusion work using FAST-LIO as LiDAR-inertial front-end.
-3. [LI_Init](https://github.com/hku-mars/LiDAR_IMU_Init): A robust, real-time LiDAR-IMU extrinsic initialization and synchronization package..
-4. [FAST-LIO-LOCALIZATION](https://github.com/HViktorTsoi/FAST_LIO_LOCALIZATION): The integration of FAST-LIO with **Re-localization** function module.
-5. [FAST-LIVO](https://github.com/hku-mars/FAST-LIVO) | [FAST-LIVO2](https://github.com/hku-mars/FAST-LIVO2): A state-of-art LiDAR-inertial-visual odometry (LIVO) system with high computational efficiency, robustness, and pixel-level accuracy.
+1. [ikd-Tree](https://github.com/hku-mars/ikd-Tree): 用于3D kNN搜索的最先进的动态KD-Tree
+2. [R2LIVE](https://github.com/hku-mars/r2live): 使用FAST-LIO作为LiDAR-IMU前端的高精度LiDAR-IMU-Vision融合系统
+3. [LI_Init](https://github.com/hku-mars/LiDAR_IMU_Init): 鲁棒的实时LiDAR-IMU外参初始化和同步工具包
+4. [FAST-LIO-LOCALIZATION](https://github.com/HViktorTsoi/FAST_LIO_LOCALIZATION): 集成重定位功能模块的FAST-LIO
+5. [FAST-LIVO](https://github.com/hku-mars/FAST-LIVO) | [FAST-LIVO2](https://github.com/hku-mars/FAST-LIVO2): 具有高计算效率、鲁棒性和像素级精度的最先进LiDAR-IMU-Visual里程计系统
 
-**Control and Plan:**
+**控制与规划相关项目:**
 
-1. [IKFOM](https://github.com/hku-mars/IKFoM): A Toolbox for fast and high-precision on-manifold Kalman filter.
-2. [UAV Avoiding Dynamic Obstacles](https://github.com/hku-mars/dyn_small_obs_avoidance): One of the implementation of FAST-LIO in robot's planning.
-3. [UGV Demo](https://www.youtube.com/watch?v=wikgrQbE6Cs): Model Predictive Control for Trajectory Tracking on Differentiable Manifolds.
-4. [Bubble Planner](https://arxiv.org/abs/2202.12177): Planning High-speed Smooth Quadrotor Trajectories using Receding Corridors.
+1. [IKFOM](https://github.com/hku-mars/IKFoM): 快速高精度流形卡尔曼滤波工具箱
+2. [UAV Avoiding Dynamic Obstacles](https://github.com/hku-mars/dyn_small_obs_avoidance): FAST-LIO在机器人路径规划中的应用之一
+3. [UGV Demo](https://www.youtube.com/watch?v=wikgrQbE6Cs): 在可微流形上进行轨迹跟踪的模型预测控制
+4. [Bubble Planner](https://arxiv.org/abs/2202.12177): 使用后退走廊规划高速平滑四旋翼轨迹
 
 <!-- 10. [**FAST-LIVO**](https://github.com/hku-mars/FAST-LIVO): Fast and Tightly-coupled Sparse-Direct LiDAR-Inertial-Visual Odometry. -->
 
 ## FAST-LIO
-**FAST-LIO** (Fast LiDAR-Inertial Odometry) is a computationally efficient and robust LiDAR-inertial odometry package. It fuses LiDAR feature points with IMU data using a tightly-coupled iterated extended Kalman filter to allow robust navigation in fast-motion, noisy or cluttered environments where degeneration occurs. Our package address many key issues:
-1. Fast iterated Kalman filter for odometry optimization;
-2. Automaticaly initialized at most steady environments;
-3. Parallel KD-Tree Search to decrease the computation;
+**FAST-LIO** (快速LiDAR-IMU里程计) 是一个计算效率高且鲁棒的LiDAR-IMU里程计包。它使用紧耦合迭代扩展卡尔曼滤波器融合LiDAR特征点和IMU数据，可以在快速运动、噪声或杂乱环境中实现鲁棒的导航。我们的软件包解决了许多关键问题：
+1. 用于里程计优化的快速迭代卡尔曼滤波器
+2. 在大多数稳定环境中自动初始化
+3. 并行KD-Tree搜索以减少计算量
 
-## FAST-LIO 2.0 (2021-07-05 Update)
+## FAST-LIO 2.0 (2021-07-05 更新)
 <!-- ![image](doc/real_experiment2.gif) -->
 <!-- [![Watch the video](doc/real_exp_2.png)](https://youtu.be/2OvjGnxszf8) -->
 <div align="left">
@@ -31,27 +31,27 @@
 <img src="doc/ulhkwh_fastlio.gif" width = 49.6% >
 </div>
 
-**Related video:**  [FAST-LIO2](https://youtu.be/2OvjGnxszf8),  [FAST-LIO1](https://youtu.be/iYCY6T79oNU)
+**相关视频:**  [FAST-LIO2](https://youtu.be/2OvjGnxszf8),  [FAST-LIO1](https://youtu.be/iYCY6T79oNU)
 
-**Pipeline:**
+**系统流程:**
 <div align="center">
 <img src="doc/overview_fastlio2.svg" width=99% />
 </div>
 
-**New Features:**
-1. Incremental mapping using [ikd-Tree](https://github.com/hku-mars/ikd-Tree), achieve faster speed and over 100Hz LiDAR rate.
-2. Direct odometry (scan to map) on Raw LiDAR points (feature extraction can be disabled), achieving better accuracy.
-3. Since no requirements for feature extraction, FAST-LIO2 can support many types of LiDAR including spinning (Velodyne, Ouster) and solid-state (Livox Avia, Horizon, MID-70) LiDARs, and can be easily extended to support more LiDARs.
-4. Support external IMU.
-5. Support ARM-based platforms including Khadas VIM3, Nivida TX2, Raspberry Pi 4B(8G RAM).
+**新特性:**
+1. 使用[ikd-Tree](https://github.com/hku-mars/ikd-Tree)进行增量建图，实现更快的速度和超过100Hz的LiDAR速率
+2. 在原始LiDAR点云上进行直接里程计（scan to map）（可以禁用特征提取），实现更好的精度
+3. 由于不需要特征提取，FAST-LIO2可以支持多种类型的LiDAR，包括旋转式（Velodyne, Ouster）和固态（Livox Avia, Horizon, MID-70）LiDAR，并且可以轻松扩展以支持更多LiDAR
+4. 支持外部IMU
+5. 支持ARM平台，包括Khadas VIM3、Nvidia TX2、Raspberry Pi 4B(8G RAM)
 
-**Related papers**: 
+**相关论文**: 
 
 [FAST-LIO2: Fast Direct LiDAR-inertial Odometry](doc/Fast_LIO_2.pdf)
 
 [FAST-LIO: A Fast, Robust LiDAR-inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter](https://arxiv.org/abs/2010.08196)
 
-**Contributors**
+**贡献者**
 
 [Wei Xu 徐威](https://github.com/XW-HKU)，[Yixi Cai 蔡逸熙](https://github.com/Ecstasy-EC)，[Dongjiao He 贺东娇](https://github.com/Joanna-HE)，[Fangcheng Zhu 朱方程](https://github.com/zfc-zfc)，[Jiarong Lin 林家荣](https://github.com/ziv-lin)，[Zheng Liu 刘政](https://github.com/Zale-Liu), [Borong Yuan](https://github.com/borongyuan)
 
@@ -60,48 +60,48 @@
     <img src="doc/results/HKU_MB_001.png" width = 49% >
 </div> -->
 
-## 1. Prerequisites
-### 1.1 **Ubuntu** and **ROS**
+## 1. 环境要求
+### 1.1 **Ubuntu** 和 **ROS**
 **Ubuntu >= 16.04**
 
-For **Ubuntu 18.04 or higher**, the **default** PCL and Eigen is enough for FAST-LIO to work normally.
+对于 **Ubuntu 18.04 或更高版本**，**默认**的PCL和Eigen就足以让FAST-LIO正常工作。
 
-ROS    >= Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
+ROS    >= Melodic. [ROS安装指南](http://wiki.ros.org/ROS/Installation)
 
-### 1.2. **PCL && Eigen**
-PCL    >= 1.8,   Follow [PCL Installation](http://www.pointclouds.org/downloads/linux.html).
+### 1.2. **PCL 和 Eigen**
+PCL    >= 1.8,   参考[PCL安装指南](http://www.pointclouds.org/downloads/linux.html)
 
-Eigen  >= 3.3.4, Follow [Eigen Installation](http://eigen.tuxfamily.org/index.php?title=Main_Page).
+Eigen  >= 3.3.4, 参考[Eigen安装指南](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 ### 1.3. **livox_ros_driver**
-Follow [livox_ros_driver Installation](https://github.com/Livox-SDK/livox_ros_driver).
+参考[livox_ros_driver安装指南](https://github.com/Livox-SDK/livox_ros_driver)
 
-*Remarks:*
-- Since the FAST-LIO must support Livox serials LiDAR firstly, so the **livox_ros_driver** must be installed and **sourced** before run any FAST-LIO luanch file.
-- How to source? The easiest way is add the line ``` source $Livox_ros_driver_dir$/devel/setup.bash ``` to the end of file ``` ~/.bashrc ```, where ``` $Livox_ros_driver_dir$ ``` is the directory of the livox ros driver workspace (should be the ``` ws_livox ``` directory if you completely followed the livox official document).
+*备注:*
+- 由于FAST-LIO必须首先支持Livox系列LiDAR，因此在运行任何FAST-LIO启动文件之前，必须安装并**source** **livox_ros_driver**
+- 如何source？最简单的方法是将``` source $Livox_ros_driver_dir$/devel/setup.bash ```添加到``` ~/.bashrc ```文件的末尾，其中``` $Livox_ros_driver_dir$ ```是livox ros驱动工作空间的目录（如果完全按照livox官方文档操作，应该是``` ws_livox ```目录）
 
 
-## 2. Build
-If you want to use docker conatiner to run fastlio2, please install the docker on you machine.
-Follow [Docker Installation](https://docs.docker.com/engine/install/ubuntu/).
-### 2.1 Docker Container
-User can create a new script with anyname by the following command in linux:
+## 2. 构建
+如果你想使用docker容器运行fastlio2，请先在机器上安装docker。
+参考[Docker安装指南](https://docs.docker.com/engine/install/ubuntu/)
+### 2.1 Docker容器
+用户可以在linux中通过以下命令创建任意名称的脚本：
 ```
 touch <your_custom_name>.sh
 ```
-Place the following code inside the ``` <your_custom_name>.sh ``` script.
+将以下代码放入``` <your_custom_name>.sh ```脚本中：
 ```
 #!/bin/bash
 mkdir docker_ws
-# Script to run ROS Kinetic with GUI support in Docker
+# 在Docker中运行带GUI支持的ROS Kinetic的脚本
 
-# Allow X server to be accessed from the local machine
+# 允许本地机器访问X server
 xhost +local:
 
-# Container name
+# 容器名称
 CONTAINER_NAME="fastlio2"
 
-# Run the Docker container
+# 运行Docker容器
 docker run -itd \
   --name=$CONTAINER_NAME \
   --user mars_ugv \
@@ -119,22 +119,22 @@ docker run -itd \
   kenny0407/marslab_fastlio2:latest \
   /bin/bash
 ```
-execute the following command to grant execute permissions to the script, making it runnable:
+执行以下命令授予脚本可执行权限：
 ```
 sudo chmod +x <your_custom_name>.sh
 ```
-execute the following command to download the image and create the container.
+执行以下命令下载镜像并创建容器：
 ```
 ./<your_custom_name>.sh
 ```
 
-*Script explanation:*
-- The docker run command provided below creates a container with a tag, using an image from Docker Hub. The download duration for this image can differ depending on the user's network speed.
-- This command also establishes a new workspace called ``` docker_ws ```, which serves as a shared folder between the Docker container and the host machine. This means that if users wish to run the rosbag example, they need to download the rosbag file and place it in the ``` docker_ws ``` directory on their host machine.
-- Subsequently, a folder with the same name inside the Docker container will receive this file. Users can then easily play the file within Docker.
-- In this example, we've shared the network of the host machine with the Docker container. Consequently, if users execute the ``` rostopic list ``` command, they will observe identical output whether they run it on the host machine or inside the Docker container."
-### 2.2 Build from source
-Clone the repository and catkin_make:
+*脚本说明:*
+- 下面提供的docker run命令使用Docker Hub中的镜像创建一个带标签的容器。镜像下载时间可能因用户网络速度而异。
+- 该命令还建立了一个名为``` docker_ws ```的新工作空间，它作为Docker容器和主机之间的共享文件夹。这意味着如果用户想运行rosbag示例，他们需要下载rosbag文件并将其放在主机上的``` docker_ws ```目录中。
+- 随后，Docker容器内同名的文件夹将接收此文件。用户就可以轻松地在Docker中播放文件。
+- 在这个例子中，我们将主机的网络与Docker容器共享。因此，如果用户执行``` rostopic list ```命令，无论是在主机上还是在Docker容器内运行，他们都会看到相同的输出。"
+### 2.2 从源码构建
+克隆仓库并执行catkin_make：
 
 ```
     cd ~/$A_ROS_DIR$/src
@@ -145,8 +145,8 @@ Clone the repository and catkin_make:
     catkin_make
     source devel/setup.bash
 ```
-- Remember to source the livox_ros_driver before build (follow 1.3 **livox_ros_driver**)
-- If you want to use a custom build of PCL, add the following line to ~/.bashrc
+- 记得在构建前source livox_ros_driver（参考1.3 **livox_ros_driver**）
+- 如果你想使用自定义构建的PCL，请将以下行添加到~/.bashrc
 ```export PCL_ROOT={CUSTOM_PCL_PATH}```
 ## 3. Directly run
 Noted:
